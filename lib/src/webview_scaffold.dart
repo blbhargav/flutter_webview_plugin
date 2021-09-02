@@ -154,6 +154,15 @@ class _WebviewScaffoldState extends State<WebviewScaffold> {
       body: Column(
         children: [
           widget.zuzuAppBar??Container(),
+          GestureDetector(
+            child: Container(
+              child: const Icon(Icons.edit),
+            ),
+            onTap: (){
+              Navigator.pop(context);
+              dispose();
+            },
+          ),
           Expanded(
             child: _WebviewPlaceholder(
               onRectChanged: (Rect value) {
