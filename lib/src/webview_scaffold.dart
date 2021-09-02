@@ -149,52 +149,59 @@ class _WebviewScaffoldState extends State<WebviewScaffold> {
       resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
       persistentFooterButtons: widget.persistentFooterButtons,
       bottomNavigationBar: widget.bottomNavigationBar,
-      body: _WebviewPlaceholder(
-        onRectChanged: (Rect value) {
-          if (_rect == null) {
-            _rect = value;
-            webviewReference.launch(
-              widget.url,
-              headers: widget.headers,
-              javascriptChannels: widget.javascriptChannels,
-              withJavascript: widget.withJavascript,
-              clearCache: widget.clearCache,
-              clearCookies: widget.clearCookies,
-              mediaPlaybackRequiresUserGesture:
-                  widget.mediaPlaybackRequiresUserGesture,
-              hidden: widget.hidden,
-              enableAppScheme: widget.enableAppScheme,
-              userAgent: widget.userAgent,
-              rect: _rect,
-              withZoom: widget.withZoom,
-              displayZoomControls: widget.displayZoomControls,
-              withLocalStorage: widget.withLocalStorage,
-              withLocalUrl: widget.withLocalUrl,
-              localUrlScope: widget.localUrlScope,
-              withOverviewMode: widget.withOverviewMode,
-              useWideViewPort: widget.useWideViewPort,
-              scrollBar: widget.scrollBar,
-              supportMultipleWindows: widget.supportMultipleWindows,
-              appCacheEnabled: widget.appCacheEnabled,
-              allowFileURLs: widget.allowFileURLs,
-              invalidUrlRegex: widget.invalidUrlRegex,
-              geolocationEnabled: widget.geolocationEnabled,
-              debuggingEnabled: widget.debuggingEnabled,
-              ignoreSSLErrors: widget.ignoreSSLErrors,
-            );
-          } else {
-            if (_rect != value) {
-              _rect = value;
-              _resizeTimer?.cancel();
-              _resizeTimer = Timer(const Duration(milliseconds: 250), () {
-                // avoid resizing to fast when build is called multiple time
-                webviewReference.resize(_rect!);
-              });
-            }
-          }
-        },
-        child: widget.initialChild ??
-            const Center(child: CircularProgressIndicator()),
+      body: Column(
+        children: [
+          widget.appBar??Container(),
+          Expanded(
+            child: _WebviewPlaceholder(
+              onRectChanged: (Rect value) {
+                if (_rect == null) {
+                  _rect = value;
+                  webviewReference.launch(
+                    widget.url,
+                    headers: widget.headers,
+                    javascriptChannels: widget.javascriptChannels,
+                    withJavascript: widget.withJavascript,
+                    clearCache: widget.clearCache,
+                    clearCookies: widget.clearCookies,
+                    mediaPlaybackRequiresUserGesture:
+                    widget.mediaPlaybackRequiresUserGesture,
+                    hidden: widget.hidden,
+                    enableAppScheme: widget.enableAppScheme,
+                    userAgent: widget.userAgent,
+                    rect: _rect,
+                    withZoom: widget.withZoom,
+                    displayZoomControls: widget.displayZoomControls,
+                    withLocalStorage: widget.withLocalStorage,
+                    withLocalUrl: widget.withLocalUrl,
+                    localUrlScope: widget.localUrlScope,
+                    withOverviewMode: widget.withOverviewMode,
+                    useWideViewPort: widget.useWideViewPort,
+                    scrollBar: widget.scrollBar,
+                    supportMultipleWindows: widget.supportMultipleWindows,
+                    appCacheEnabled: widget.appCacheEnabled,
+                    allowFileURLs: widget.allowFileURLs,
+                    invalidUrlRegex: widget.invalidUrlRegex,
+                    geolocationEnabled: widget.geolocationEnabled,
+                    debuggingEnabled: widget.debuggingEnabled,
+                    ignoreSSLErrors: widget.ignoreSSLErrors,
+                  );
+                } else {
+                  if (_rect != value) {
+                    _rect = value;
+                    _resizeTimer?.cancel();
+                    _resizeTimer = Timer(const Duration(milliseconds: 250), () {
+                      // avoid resizing to fast when build is called multiple time
+                      webviewReference.resize(_rect!);
+                    });
+                  }
+                }
+              },
+              child: widget.initialChild ??
+                  const Center(child: CircularProgressIndicator()),
+            ),
+          )
+        ],
       ),
     );
   }
