@@ -41,6 +41,7 @@ class WebviewScaffold extends StatefulWidget {
     this.geolocationEnabled = false,
     this.debuggingEnabled = false,
     this.ignoreSSLErrors = false,
+    this.zuzuAppBar
   }) : super(key: key);
 
   final PreferredSizeWidget? appBar;
@@ -74,6 +75,7 @@ class WebviewScaffold extends StatefulWidget {
   final bool useWideViewPort;
   final bool debuggingEnabled;
   final bool ignoreSSLErrors;
+  final Widget? zuzuAppBar;
 
   @override
   _WebviewScaffoldState createState() => _WebviewScaffoldState();
@@ -151,7 +153,7 @@ class _WebviewScaffoldState extends State<WebviewScaffold> {
       bottomNavigationBar: widget.bottomNavigationBar,
       body: Column(
         children: [
-          widget.appBar??Container(),
+          widget.zuzuAppBar??Container(),
           Expanded(
             child: _WebviewPlaceholder(
               onRectChanged: (Rect value) {
