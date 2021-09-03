@@ -160,7 +160,7 @@ class _WebviewScaffoldState extends State<WebviewScaffold> {
                 padding: const EdgeInsets.all(20),
               ),
               onTap: (){
-                webviewReference.close();
+               _closePage();
               },
             ),
           ),
@@ -216,6 +216,11 @@ class _WebviewScaffoldState extends State<WebviewScaffold> {
         ],
       ),
     );
+  }
+
+  void _closePage() {
+    webviewReference.close();
+    Navigator.pop(context);
   }
 }
 
