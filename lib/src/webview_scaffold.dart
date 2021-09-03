@@ -153,19 +153,7 @@ class _WebviewScaffoldState extends State<WebviewScaffold> {
       bottomNavigationBar: widget.bottomNavigationBar,
       body: Column(
         children: [
-          widget.zuzuAppBar??Container(
-            margin: const EdgeInsets.only(top: 30),
-            child: GestureDetector(
-              child: Container(
-                color: Colors.blue,
-                child: const Icon(Icons.image),
-                padding: const EdgeInsets.all(20),
-              ),
-              onTap: (){
-               _closePage();
-              },
-            ),
-          ),
+          widget.zuzuAppBar??Container(),
           Expanded(
             child: _WebviewPlaceholder(
               onRectChanged: (Rect value) {
@@ -220,8 +208,7 @@ class _WebviewScaffoldState extends State<WebviewScaffold> {
     );
   }
 
-  void _closePage() {
-    webviewReference.close();
+  void closePage() {
     _onBack?.cancel();
     _resizeTimer?.cancel();
     webviewReference.close();
