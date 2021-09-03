@@ -154,8 +154,10 @@ class _WebviewScaffoldState extends State<WebviewScaffold> {
       body: Column(
         children: [
           widget.zuzuAppBar??Container(
+            margin: const EdgeInsets.only(top: 30),
             child: GestureDetector(
               child: Container(
+                color: Colors.blue,
                 child: const Icon(Icons.image),
                 padding: const EdgeInsets.all(20),
               ),
