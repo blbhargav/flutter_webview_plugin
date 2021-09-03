@@ -220,6 +220,13 @@ class _WebviewScaffoldState extends State<WebviewScaffold> {
 
   void _closePage() {
     webviewReference.close();
+    _onBack?.cancel();
+    _resizeTimer?.cancel();
+    webviewReference.close();
+    if (widget.hidden) {
+      _onStateChanged?.cancel();
+    }
+    webviewReference.dispose();
     Navigator.pop(context);
   }
 }
