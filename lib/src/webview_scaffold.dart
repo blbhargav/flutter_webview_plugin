@@ -217,6 +217,7 @@ class WebviewScaffoldState extends State<WebviewScaffold> {
     }
     webviewReference.dispose();
     Navigator.pop(context);
+    print('BLB closePage WebView Plugin');
   }
 }
 
