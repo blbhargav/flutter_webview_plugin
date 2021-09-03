@@ -209,15 +209,7 @@ class WebviewScaffoldState extends State<WebviewScaffold> {
   }
 
   void closePage() {
-    _onBack?.cancel();
-    _resizeTimer?.cancel();
-    webviewReference.close();
-    if (widget.hidden) {
-      _onStateChanged?.cancel();
-    }
-    webviewReference.dispose();
-    print('BLB closePage WebView Plugin');
-    Navigator.pop(context);
+    webviewReference.goBack();
   }
 }
 
