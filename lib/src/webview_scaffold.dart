@@ -78,10 +78,10 @@ class WebviewScaffold extends StatefulWidget {
   final Widget? zuzuAppBar;
 
   @override
-  _WebviewScaffoldState createState() => _WebviewScaffoldState();
+  WebviewScaffoldState createState() => WebviewScaffoldState();
 }
 
-class _WebviewScaffoldState extends State<WebviewScaffold> {
+class WebviewScaffoldState extends State<WebviewScaffold> {
   final webviewReference = FlutterWebviewPlugin();
   Rect? _rect;
   Timer? _resizeTimer;
